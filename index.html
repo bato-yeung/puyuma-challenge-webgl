@@ -104,8 +104,8 @@
             var loadingBar = document.querySelector("#unity-loading-bar");
             var progressBarFull = document.querySelector("#unity-progress-bar-full");
             function StartAR() {
-                canvas.style.width = window.innerWidth + "px";
-                canvas.style.height = window.innerHeight + "px";
+                //canvas.style.width = window.innerWidth + "px";
+                //canvas.style.height = window.innerHeight + "px";
                 
                 document.getElementById("startARDiv").style.display = "none";
                 createUnityInstance(document.querySelector("#unity-canvas"), {
@@ -127,11 +127,21 @@
                     window.unityInstance = unityInstance;
                     RequestWebcam();
                     loadingBar.style.display = "none";
+					
+					canvas.style.width = document.documentElement.clientWidth + 'px';
+					canvas.style.height = document.documentElement.clientHeight + 'px';
                 });
                 loadingBar.style.display = "block";
             }
+			
+			window.onresize = function()
+			{
+				canvas.style.width = document.documentElement.clientWidth + 'px';
+				canvas.style.height = document.documentElement.clientHeight + 'px';
+			};
+			
             //Set Facing Mode here ('environment', 'user', '')
-		window.unityFacingMode = "environment"
+			window.unityFacingMode = "environment"
             window.WEBCAM_SETTINGS = {
                 video: {
                     facingMode: unityFacingMode,
